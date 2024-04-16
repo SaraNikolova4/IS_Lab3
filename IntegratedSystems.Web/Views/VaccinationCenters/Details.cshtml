@@ -1,0 +1,83 @@
+﻿@model IntegratedSystems.Domain.Domain_Models.VaccinationCenter
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>VaccinationCenter</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MaxCapacity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MaxCapacity)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a> |
+</div>
+<br />
+<br />
+<div style="background-color:forestgreen; padding-top: 10px; padding-bottom:10px;">
+    <a style="margin-left:550px;  color:white; font-style:normal; font-size:20px;" asp-action="AddPacienttoCentar" asp-route-id="@Model?.Id">Add Vaccined Patient</a>
+</div>
+<br />
+<br />
+<br />
+@{
+    var counter = 1;
+}
+
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Taken</th>
+                <th>Centre</th>
+                <th>Certificate</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+            @foreach (var vaccine in Model.Vaccines)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@vaccine.PatientFor.FirstName</td>
+                    <td>@vaccine.PatientFor.LastName</td>
+                    <td>@vaccine.DateTaken</td>
+                    <td>@vaccine.Center</td>
+                    <td>@vaccine.Certificate</td>
+                </tr>
+                @{
+                   counter++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
